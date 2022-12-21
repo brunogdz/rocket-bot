@@ -9,6 +9,8 @@ const {
   Collection,
 } = require("discord.js");
 const fs = require("fs");
+const { DisTube } = require("distube");
+const { SpotifyPlugin } = require("@distube/spotify");
 
 const prefix = ">";
 
@@ -44,6 +46,13 @@ const client = new Client({
 //     message.channel.send("Bot is working");
 //   }
 // });
+
+client.distube = new DisTube(client, {
+  emitNewSongOnly: true,
+  leaveOnFinish: true,
+  emitAddSongWhenCreatingQueue: false,
+  plugins: [new SpotifyPlugin()],
+});
 
 client.commands = new Collection();
 client.commandArray = [];
